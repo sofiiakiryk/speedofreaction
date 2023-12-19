@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Зміна кольору кнопки</title>
+    <style>
+      #colorButton {
+        padding: 20px;
+        font-size: 16px;
+        cursor: pointer;
+        background-color: red; /* Початковий колір - червоний */
+      }
+    </style>
+  </head>
+  <body>
+    <button id="colorButton" onclick="changeColor()">Натисни мене</button>
+    <p id="reactionTime"></p>
+
+    <script>
+      function changeColor() {
+        var button = document.getElementById("colorButton");
+        var reactionTimeDisplay = document.getElementById("reactionTime");
+
+        // Запам'ятовуємо час натискання кнопки
+        var startTime = new Date().getTime();
+
+        // Зміна колір кнопки на зелений
+        button.style.backgroundColor = "green";
+
+        // Генеруємо випадковий час (в мс) через який знову зміниться колір
+        var randomTime = Math.floor(Math.random() * 5000) + 1000; // від 1 до 6 секунд
+
+        // Очікуємо випадковий час і потім змінюємо колір на червоний
+        setTimeout(function () {
+          button.style.backgroundColor = "red";
+
+          // Обчислюємо час реакції користувача
+          var reactionTime = new Date().getTime() - startTime;
+
+          // Виводимо результат на екран
+          reactionTimeDisplay.innerHTML =
+            "Час реакції: " + reactionTime + " мс";
+        }, randomTime);
+      }
+    </script>
+  </body>
+</html>
